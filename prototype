@@ -1,0 +1,111 @@
+CREATE DATABASE Inquiries
+GO
+
+CREATE TABLE Student(
+studentId INT PRIMARY KEY,
+studentPin VARCHAR(20),
+);
+
+ALTER TABLE Student
+ADD CONSTRAINT counsellorId FOREIGN KEY
+REFERENCES Counsellor;
+
+CREATE TABLE Counsellor(
+consellorId VARCHAR(10) PRIMARY KEY,
+firstName VARCHAR(30),
+lastName VARCHAR(30),
+officeNumber INT,
+);
+
+ALTER TABLE Counsellor
+ADD CONSTRAINT studentId FOREIGN KEY
+REFERENCES Student;
+
+ALTER TABLE Counsellor
+ADD CONSTRAINT complaintId FOREIGN KEY
+REFERENCES Complaint;
+
+CREATE TABLE Complaint(
+complaintId INT PRIMARY KEY,
+actionDone VARCHAR(40),
+caseType VARCHAR(20),
+natureOfComplaint VARCHAR(50),
+typeOfCase VARCHAR(20),
+counsellorId VARCHAR(10) references Counsellor,
+);
+
+CREATE TABLE Finance(
+financeId VARCHAR(15) PRIMARY KEY,
+bankDetail VARCHAR(200),
+feeBalance DECIMAL,
+bursaryProgram VARCHAR(50),
+paymentDetail VARCHAR(60),
+);
+
+CREATE TABLE Location(
+locationId VARCHAR(15),
+userDestination VARCHAR(50),
+userLocation VARCHAR(50),
+campusMap VARCHAR(100), 
+);
+
+ALTER TABLE Location
+ADD CONSTRAINT eventId FOREIGN KEY(eventId)
+REFERENCES Event;
+
+CREATE TABLE Academic(
+studyProgram VARCHAR(15) PRIMARY KEY,
+courseOffered VARCHAR(70),
+applicationProcedure VARCHAR(1000),
+examTimetable TIME,
+teachingTimetable TIME,
+);
+
+CREATE TABLE Library(
+libraryId INT PRIMARY KEY,
+libraryName VARCHAR(40),
+booksAvailable VARCHAR(4000),
+onlineBooks VARCHAR(8000),
+);
+
+CREATE TABLE Event(
+eventId VARCHAR(10) PRIMARY KEY,
+eventName VARCHAR(20),
+eventHost VARCHAR(40),
+);
+
+ALTER TABLE Event
+ADD CONSTRAINT locationId FOREIGN KEY(locationId)
+REFERENCES Location;
+
+CREATE TABLE Questions(
+studentQuestion VARCHAR(90) PRIMARY KEY,
+responseGiven VARCHAR(100),
+previousQuestion VARCHAR(90),
+previousAnswer VARCHAR(100),
+);
+
+CREATE TABLE Medical(
+clinicId INT PRIMARY KEY,
+clinicName VARCHAR(40),
+emergencyNumber CHAR(10),
+ambulanceContact CHAR(10),
+);
+
+CREATE TABLE Club(
+clubId INT PRIMARY KEY,
+clubName VARCHAR(40),
+clubMeeting VARCHAR(100),
+clubDescription VARCHAR(400),
+);
+
+CREATE TABLE Hostel(
+hostelId INT PRIMARY KEY,
+hostelName VARCHAR(30),
+hostelbooking VARCHAR(400),
+cafeteriaMenu VARCHAR(700),
+);
+
+CREATE PROCEDURE p_specialstudent
+
+
